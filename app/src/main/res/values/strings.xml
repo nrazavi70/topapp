@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">TopApp</string>
+    <string name="register">Register</string>
+    <string name="create_new_account">Create new Account</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="get_started">Get Started</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="account_role">Account role</string>
+    <string name="role_user">User</string>
+    <string name="role_owner">Owner</string>
+    <string name="role_admin">Admin</string>
+    <string name="login">Login</string>
+    <string name="signup_with_email">SignUp with email</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="create">Create</string>
+    <string name="edit_user">Edit user</string>
+    <string name="save">Save</string>
+</resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.user.login.LoginActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:paddingBottom="@dimen/screen_padding_bottom">
+
+            <TextView
+                android:id="@+id/activity_login_title"
+                style="@style/Theme.TopApp.PageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/screen_padding_top"
+                android:text="@string/login"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_login_email"
+                style="@style/Theme.TopApp.InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:hint="@string/email"
+                app:layout_constraintTop_toBottomOf="@id/activity_login_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    style="@style/Theme.TopApp.TextInput" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_login_password"
+                style="@style/Theme.TopApp.InputLayout"
+                android:layout_width="match_parent"
+                app:passwordToggleEnabled="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/password"
+                app:layout_constraintTop_toBottomOf="@id/activity_login_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    style="@style/Theme.TopApp.TextInput" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/activity_login_action"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_login_password"
+                android:layout_marginTop="30dp"
+                android:text="@string/login"
+                android:layout_height="60dp"/>
+
+            <Button
+                android:id="@+id/activity_login_register_btn"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_login_action"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/teal_200"
+                android:textColor="@color/black"
+                android:text="@string/signup_with_email"
+                android:layout_height="60dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_login_loading"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#4DFFFFFF"
+                android:visibility="invisible"
+                android:elevation="10dp"
+                android:onClick="@{() -> null}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:indeterminate="true"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.user.register.RegisterActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="user"
+            type="com.test.core.domain.User" />
+
+        <variable
+            name="isEdit"
+            type="Boolean" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/screen_padding_bottom"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal">
+
+            <TextView
+                android:id="@+id/activity_register_title"
+                style="@style/Theme.TopApp.PageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/screen_padding_top"
+                android:text="@{isEdit ? @string/edit_user : @string/get_started}"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/activity_register_subtitle"
+                style="@style/Theme.TopApp.PageSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_have_an_account"
+                android:visibility="@{isEdit ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_title" />
+
+            <TextView
+                android:id="@+id/activity_register_subtitle_action"
+                style="@style/Theme.TopApp.PageSubTitleAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:visibility="@{isEdit ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toEndOf="@id/activity_register_subtitle"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_title" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_first_name"
+                style="@style/Theme.TopApp.InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:hint="@string/first_name"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_subtitle_action">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Theme.TopApp.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{user.firstName}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_last_name"
+                style="@style/Theme.TopApp.InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/last_name"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_first_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Theme.TopApp.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{user.lastName}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_email"
+                style="@style/Theme.TopApp.InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/email"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_last_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Theme.TopApp.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:text="@{user.email}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_password"
+                style="@style/Theme.TopApp.InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/password"
+                android:visibility="@{isEdit ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_email"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Theme.TopApp.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/activity_register_role_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_password"
+                android:layout_marginTop="20dp"
+                android:text="@string/account_role"/>
+
+            <RadioGroup
+                android:id="@+id/activity_register_roles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_role_title"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/activity_register_role_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:checked="@{user.role == 0}"
+                    android:enabled="true"
+                    android:text="@string/role_user"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioButton
+                    android:id="@+id/activity_register_role_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:checked="@{user.role == 1}"
+                    android:text="@string/role_owner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioButton
+                    android:id="@+id/activity_register_role_admin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{user.role == 2}"
+                    android:text="@string/role_admin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/activity_register_action"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:text="@{isEdit ? @string/save : @string/register}"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_roles" />
+
+            <Button
+                android:id="@+id/activity_register_delete"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Delete"
+                android:backgroundTint="@color/design_default_color_error"
+                android:visibility="@{isEdit ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@id/activity_register_action" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_register_loading"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#4DFFFFFF"
+                android:visibility="invisible"
+                android:elevation="10dp"
+                android:onClick="@{() -> null}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:indeterminate="true"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

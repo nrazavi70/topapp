@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.restaurant.page.RestaurantPageActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="restaurant"
+            type="com.test.core.domain.Restaurant" />
+
+        <variable
+            name="user"
+            type="com.test.core.domain.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/activity_restaurant_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/screen_padding_top"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:text="@{restaurant.name, default=Title}"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_restaurant_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:text="@{restaurant.address, default=Address}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_restaurant_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text='@{restaurant.averageRate + "/5.0", default="0.0/5.0"}'
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/activity_restaurant_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/activity_restaurant_name" />
+
+        <TextView
+            android:id="@+id/activity_restaurant_review_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/screen_padding_top"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:text="Reviews:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_restaurant_address" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:text='@{restaurant.reviewCount + " review", default="0 review"}'
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/activity_restaurant_review_title"
+            app:layout_constraintTop_toBottomOf="@id/activity_restaurant_address" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_restaurant_review_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingVertical="10dp"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/activity_restaurant_review_title"
+            app:layout_constraintBottom_toTopOf="@id/activity_restaurant_action"
+            tools:listitem="@layout/review_list_item" />
+
+        <Button
+            android:id="@+id/activity_restaurant_action"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/screen_padding_bottom"
+            android:layout_marginHorizontal="@dimen/screen_padding_horizontal"
+            android:text='@{user.role > 0 ? "Edit Restaurant" : "Create Review"}'
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <View
+            android:id="@+id/activity_restaurant_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/screen_padding_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.review.response.ReviewResponseActivity">
+
+    <data>
+
+        <variable
+            name="review"
+            type="com.test.core.domain.Review" />
+
+        <variable
+            name="user"
+            type="String" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/activity_review_response_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/screen_padding_top"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                android:text="Response to review"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/activity_review_response_name_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/screen_padding_top"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                android:text="Writer: "
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_title" />
+
+            <TextView
+                android:id="@+id/activity_review_response_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{user, default=user}"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_name_label" />
+
+            <TextView
+                android:id="@+id/activity_review_response_rate_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                android:text="Rate: "
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_name" />
+
+            <TextView
+                android:id="@+id/activity_review_response_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='@{review.rate + "/5", default="5/5"}'
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_rate_label" />
+
+            <TextView
+                android:id="@+id/activity_review_response_message_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                android:text="Message: "
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_rate" />
+
+            <TextView
+                android:id="@+id/activity_review_response_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{review.review, default=Message}"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:paddingHorizontal="@dimen/screen_padding_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_message_label" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_review_response_response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/screen_padding_horizontal"
+                android:layout_marginTop="20dp"
+                android:hint="Response"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_message">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{review.response}"
+                    android:minLines="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/activity_review_response_action"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="@dimen/screen_padding_horizontal"
+                android:layout_marginBottom="@dimen/screen_padding_bottom"
+                android:text="Save"
+                app:layout_constraintTop_toBottomOf="@id/activity_review_response_response" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_review_response_loading"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#4DFFFFFF"
+                android:visibility="invisible"
+                android:elevation="10dp"
+                android:onClick="@{() -> null}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:indeterminate="true"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

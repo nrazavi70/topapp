@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="review"
+            type="com.test.core.domain.Review" />
+
+        <variable
+            name="user"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_list_item"
+        android:background="?selectableItemBackground"
+        android:paddingHorizontal="@dimen/screen_padding_horizontal"
+        android:paddingVertical="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/review_list_item_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user, default=User}"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text='@{review.rate + "/5", default="5/5"}'
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@id/review_list_item_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/review_list_item_user" />
+
+        <TextView
+            android:id="@+id/review_list_item_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{review.review, default=message}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/review_list_item_user" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{"Response: " + review.response, default=response}'
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="6dp"
+            android:visibility="@{review.response == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/review_list_item_message" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
